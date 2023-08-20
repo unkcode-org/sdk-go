@@ -105,9 +105,6 @@ func LoginWithLicense(token string, name string, regularValidation bool, license
 	// Codificar el JSON en base64
 	licenseB64 := base64.StdEncoding.EncodeToString(licenseJSON)
 
-	fmt.Println("STR")
-	fmt.Println(string(licenseB64))
-
 	// Crear el cuerpo de solicitud para la verificación
 	verifyLicenseRequestBody := VerifyRequestBody{
 		Data: licenseB64,
@@ -135,12 +132,8 @@ func LoginWithLicense(token string, name string, regularValidation bool, license
 		return false
 	}
 
-	fmt.Println("xd")
-	fmt.Println(data)
-
 	// Verificar si el mensaje contiene "SUCN"
 	if message, ok := data["message"].(string); !ok || !containsSUCN(message) {
-		fmt.Println(message)
 		return false
 	}
 
@@ -158,7 +151,6 @@ func CreateValidationRoutine(token string, name string, regularValidation bool, 
 
 	for retries < maxRetries {
 		time.Sleep(20 * time.Second)
-		fmt.Println("Rutina ejecutada")
 		logged := LoginWithLicense(token, name, regularValidation, license, macAddress, cb)
 
 		if !logged {
