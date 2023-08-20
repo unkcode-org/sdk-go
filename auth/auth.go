@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/unkcode-org/sdk-go/src/config"
+	"github.com/unkcode-org/sdk-go/config"
 )
 
 type AuthResponse struct {
